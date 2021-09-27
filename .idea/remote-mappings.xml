@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteMappingsManager">
+    <list>
+      <list>
+        <remote-mappings server-id="python@a88d4e92-dd1b-46d5-9cc5-06c85462219b" />
+        <remote-mappings server-id="python@sftp://ybzhou@[2001:da8:215:6a01::1:e6d5]:666/home/ybzhou/anaconda3/bin/python3">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$" remote-root="/home/ybzhou/workspace/delay_analysis" />
+            </list>
+          </settings>
+        </remote-mappings>
+      </list>
+    </list>
+  </component>
+</project>
