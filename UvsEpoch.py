@@ -1,11 +1,13 @@
 """
 不同时钟同步模型吞吐量随迭代步数的变化曲线
 """
+import random
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy.stats import bernoulli
 from Lyapunov import get_U, delt_e
 
+random.seed(1)
 # 时钟同步参数
 tao = 0.1  # 采样周期
 R = 0.1  # 随机时延协方差
@@ -90,10 +92,14 @@ plt.figure(1)
 plt.grid(True)
 plt.xlabel('观测步数')
 plt.ylabel('U(bps)')
-plt.plot(np.linspace(0, loops_kar, loops_kar), Us_avg, label='确定性不完全时钟同步模型')
+marker_size = 4
+plt.plot(np.linspace(0, loops_kar, loops_kar), Us_avg,  linestyle='--', marker='+',
+         markersize=marker_size, label='确定性不完全时钟同步模型')
 plt.scatter([range(0, loops_kar)] * loops_mc, Us_mc, color='red', marker='.', alpha=0.9, label='蒙特卡洛随机实验')
-plt.plot(np.linspace(0, loops_kar, loops_kar), Us_cmp, label='完全时钟同步模型')
-plt.plot(np.linspace(0, loops_kar, loops_kar), Us_bwq, label='不完全时钟同步模型')
+plt.plot(np.linspace(0, loops_kar, loops_kar), Us_cmp,  linestyle='--', marker='.',
+         markersize=marker_size, label='完全时钟同步模型')
+plt.plot(np.linspace(0, loops_kar, loops_kar), Us_bwq,  linestyle='--', marker='^',
+         markersize=marker_size, label='不完全时钟同步模型')
 plt.legend()
-plt.savefig('fig4')
+plt.savefig('fig3')
 plt.show()

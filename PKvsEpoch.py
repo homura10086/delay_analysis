@@ -1,10 +1,12 @@
 """
 不同时钟同步模型协方差随迭代次数的变化曲线
 """
+import random
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy.stats import bernoulli
 
+random.seed(1)
 # 时钟同步参数
 tao = 0.1  # 采样周期
 R = 0.1  # 随机时延协方差
@@ -81,10 +83,15 @@ plt.figure(1)
 plt.grid(True)
 plt.xlabel('观测步数')
 plt.ylabel('Tr[P]')
-plt.plot(np.linspace(0, loops_kar, loops_kar), Ps_avg, label='确定性不完全时钟同步模型')
-plt.scatter([range(0, loops_kar)] * loops_mc, Ps_mc, color='red', marker='.', alpha=0.9, label='蒙特卡洛随机实验')
-plt.plot(np.linspace(0, loops_kar, loops_kar), Ps_cmp, label='完全时钟同步模型')
-plt.plot(np.linspace(0, loops_kar, loops_kar), Ps_bwq, label='不完全时钟同步模型')
+marker_size = 5
+plt.plot(np.linspace(0, loops_kar, loops_kar), Ps_avg, linestyle='--', marker='+',
+         markersize=marker_size, label='确定性不完全时钟同步模型')
+plt.scatter([range(0, loops_kar)] * loops_mc, Ps_mc, color='red', marker='.',
+            alpha=0.9, label='蒙特卡洛随机实验')
+plt.plot(np.linspace(0, loops_kar, loops_kar), Ps_cmp, linestyle='--', marker='.',
+         markersize=marker_size, label='完全时钟同步模型')
+plt.plot(np.linspace(0, loops_kar, loops_kar), Ps_bwq, linestyle='--', marker='^',
+         markersize=marker_size, label='不完全时钟同步模型')
 plt.legend()
 plt.savefig('fig2')
 plt.show()

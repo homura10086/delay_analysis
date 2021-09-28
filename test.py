@@ -2,5 +2,5 @@ import numpy as np
 import matplotlib
 from scipy.stats import bernoulli
 
-gamma = bernoulli.rvs(p=0.5, size=10)
-print(type(gamma))
+image = np.array([[1,1,1],[1,1,0],[1,0,1]])
+print(image)
