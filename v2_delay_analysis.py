@@ -4,7 +4,9 @@ from scipy import integrate
 from scipy import stats
 import numpy as np
 
-#   基于排队论和随机网络演算的时延确定性分析
+'''
+基于排队论和随机网络演算的时延确定性分析
+'''
 
 N0 = pow(10, -160 / 10)  # mW/Hz
 NF = pow(10, 1 / 10)  # 接收机噪声系数 1dB
