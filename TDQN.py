@@ -278,33 +278,33 @@ def plot():
     lamudas_ra = np.array(data_ra['lamudas']).reshape(NUM_EPISODES, repeats_ra).mean(1)
     Bs_ra = np.array(data_ra['Bs']).reshape(NUM_EPISODES, repeats_ra).mean(1)
 
-    plt.rcParams['font.sans-serif'] = ['STZhongsong']
-    plt.rcParams['axes.unicode_minus'] = False
+    # plt.rcParams['font.sans-serif'] = ['STZhongsong']
+    # plt.rcParams['axes.unicode_minus'] = False
     marker_size = 5
 
     plt.figure(1)
     plt.grid(True)
     plt.ylabel('Tr[P]', fontsize=12)
-    plt.xlabel('迭代次数', fontsize=12)
+    plt.xlabel('Number of iterations', fontsize=12)
     plt.tick_params(axis='both', which='major', labelsize=10)
     plt.plot(Ps_tdqn, marker='.', markersize=marker_size, alpha=0.9, label='3DQN')
     plt.plot(Ps_dqn, marker='.', markersize=marker_size, alpha=0.9, label='DQN')
     plt.plot(Ps_ra, marker='.', markersize=marker_size, alpha=0.9, label='RA')
     plt.plot(Ps_q, marker='.', markersize=marker_size, alpha=0.9, label='Q-learning')
     plt.legend(loc='best', fancybox=True, shadow=False, frameon=True)
-    plt.savefig('fig6')
+    plt.savefig('fig4')
 
     plt.figure(2)
     plt.grid(True)
     plt.ylabel('U(bps)', fontsize=12)
-    plt.xlabel('迭代次数', fontsize=12)
+    plt.xlabel('Number of iterations', fontsize=12)
     plt.tick_params(axis='both', which='major', labelsize=10)
     plt.plot(Us_tdqn, marker='.', markersize=marker_size, alpha=0.9, label='3DQN')
     plt.plot(Us_dqn, marker='.', markersize=marker_size, alpha=0.9, label='DQN')
     plt.plot(Us_ra, marker='.', markersize=marker_size, alpha=0.9, label='RA')
     plt.plot(Us_q, marker='.', markersize=marker_size, alpha=0.9, label='Q-learning')
     plt.legend(loc='best', fancybox=True, shadow=False, frameon=True)
-    plt.savefig('fig7')
+    plt.savefig('fig5')
 
     # plt.figure(3)
     # plt.grid(True)

@@ -1,12 +1,12 @@
-from math import *
+"""
+基于排队论和随机网络演算的时延确定性分析（无信噪比分段）
+"""
+
+from math import sqrt, exp, log2, inf
 from matplotlib import pyplot as plt
 from scipy import integrate
 from scipy import stats
 import numpy as np
-
-'''
-基于排队论和随机网络演算的时延确定性分析（无信噪比分段）
-'''
 
 N0 = pow(10, -160 / 10)  # mW/Hz
 sigma = sqrt(1 / 2)  # 瑞利分布参数
@@ -15,7 +15,7 @@ dis = 500  # m
 sigma_ls = pow(10, 6 / 10)  # 阴影衰落标准差 6dB 比值
 a = 3  # 路径损耗因子(2~6)
 Pl = pow(dis, a)  # 比值
-G = Pl * sigma_ls  # 比值
+G = 1 / (Pl * sigma_ls)  # 比值
 L = 1024 * 8  # 包长  bits/packet
 
 t_low = 0.5e-3  # 时延下界 s
@@ -28,13 +28,13 @@ t_up_x = t_up - t_up_w
 
 Bw = 1e6  # Hz
 lamda = 1e3  # packages/s
-
+h = G / (N0 * Bw)   # 比值
 p_delay_list = []
 
 
 def get_dcp(Pt):
     Pt = pow(10, Pt / 10)  # mW
-    snr = Pt / (G * N0 * Bw)  # 比值
+    snr = Pt * h  # 比值
 
     # 随机网络演算上边界计算
     theta = 0  # 随机网络演算参数

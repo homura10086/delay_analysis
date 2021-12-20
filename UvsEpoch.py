@@ -86,20 +86,20 @@ for _ in range(loops_kar):
     Us_cmp.append(U_cmp)
 
 
-plt.rcParams['font.sans-serif'] = ['STZhongsong']
-plt.rcParams['axes.unicode_minus'] = False
+# plt.rcParams['font.sans-serif'] = ['STZhongsong']
+# plt.rcParams['axes.unicode_minus'] = False
 plt.figure(1)
 plt.grid(True)
-plt.xlabel('观测步数')
+plt.xlabel('Observation steps')
 plt.ylabel('U(bps)')
 marker_size = 4
 plt.plot(np.linspace(0, loops_kar, loops_kar), Us_avg,  linestyle='--', marker='+',
-         markersize=marker_size, label='确定性不完全时钟同步模型')
-plt.scatter([range(0, loops_kar)] * loops_mc, Us_mc, color='red', marker='.', alpha=0.9, label='蒙特卡洛随机实验')
+         markersize=marker_size, label='deterministic incomplete model')
+plt.scatter([range(0, loops_kar)] * loops_mc, Us_mc, color='red', marker='.', alpha=0.9, label='Monte Carlo')
 plt.plot(np.linspace(0, loops_kar, loops_kar), Us_cmp,  linestyle='--', marker='.',
-         markersize=marker_size, label='完全时钟同步模型')
+         markersize=marker_size, label='complete model')
 plt.plot(np.linspace(0, loops_kar, loops_kar), Us_bwq,  linestyle='--', marker='^',
-         markersize=marker_size, label='不完全时钟同步模型')
+         markersize=marker_size, label='incomplete model')
 plt.legend()
 plt.savefig('fig3')
 plt.show()
