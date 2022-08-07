@@ -1,5 +1,5 @@
 """
-时钟同步精度误差协方差和平均吞吐量的联合优化算法
+时钟同步精度误差协方差和平均吞吐量的联合优化算法，3DQN等算法调用接口
 """
 from math import sqrt, inf, log2, exp, pi
 import matplotlib.pyplot as plt

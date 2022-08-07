@@ -1,10 +1,13 @@
-from Lyapunov import get_step, get_init
+"""
+随机求解算法
+"""
+from En_Long.Lyapunov import get_step
 import numpy as np
 import random
 from TDQN import NUM_EPISODES, repeats, col, repeats_ra
 from matplotlib import pyplot as plt
 import pandas as pd
-from tqdm import trange, tqdm
+from tqdm import trange
 
 random.seed(1)
 

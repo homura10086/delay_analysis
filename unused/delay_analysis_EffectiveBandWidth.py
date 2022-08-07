@@ -1,10 +1,12 @@
+"""
+基于有效带宽和有效容量理论的时延分析，没写完
+"""
+
 from math import *
 from matplotlib import pyplot as plt
 from scipy import integrate
 from sympy import symbols
 from scipy import stats
-
-#   基于有效带宽和有效容量理论的时延分析
 
 N0 = pow(10, -174 / 10)  # mW/Hz
 NF = pow(10, 1 / 10)  # 接收机噪声系数 1dB

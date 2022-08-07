@@ -1,3 +1,7 @@
+"""
+拟合函数
+"""
+
 from math import *
 from sympy import *
 # from sympy.abc import z

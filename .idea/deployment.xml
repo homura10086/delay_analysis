@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="ybzhou@[2001:da8:215:6a01::1:e6d5]:666 password" remoteFilesAllowedToDisappearOnAutoupload="false" autoUploadExternalChanges="true">
+  <component name="PublishConfigData" autoUpload="Always" remoteFilesAllowedToDisappearOnAutoupload="false" confirmBeforeUploading="false" autoUploadExternalChanges="true">
+    <option name="confirmBeforeUploading" value="false" />
     <serverData>
-      <paths name="ybzhou@[2001:da8:215:6a01::1:e6d5]:666 password">
+      <paths name="3090">
         <serverdata>
           <mappings>
-            <mapping deploy="/workspace/delay_analysis" local="$PROJECT_DIR$" />
+            <mapping deploy="/workspace/delay_analysis" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="KG">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/delay_analysis" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@120.79.213.53:22 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/root/delay_analysis" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>

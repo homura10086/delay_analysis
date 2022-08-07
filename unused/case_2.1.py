@@ -1,3 +1,7 @@
+"""
+师兄论文
+"""
+
 import math
 from math import *
 import numpy as np

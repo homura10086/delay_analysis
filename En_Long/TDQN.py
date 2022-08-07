@@ -1,3 +1,6 @@
+"""
+3DQN求解算法
+"""
 import random
 from collections import namedtuple
 import matplotlib.pyplot as plt
@@ -9,7 +12,7 @@ from numpy.random import normal
 from torch import nn
 from torch import optim
 from tqdm import trange
-from Lyapunov import get_init, get_step
+from En_Long.Lyapunov import get_init, get_step
 
 
 Transition = namedtuple('Transition', ('state', 'action', 'next_state', 'reward'))

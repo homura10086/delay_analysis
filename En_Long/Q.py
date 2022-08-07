@@ -1,10 +1,13 @@
+"""
+Q学习求解算法
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 import random
 from tqdm import trange
 
 from TDQN import NUM_EPISODES, MAX_STEPS, repeats, col, repeats_ra
-from Lyapunov import get_init, get_step
+from En_Long.Lyapunov import get_init, get_step
 import pandas as pd
 
 random.seed(1)

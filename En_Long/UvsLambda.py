@@ -4,7 +4,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy.stats import bernoulli
-from Lyapunov import get_U, delt_e
+from En_Long.Lyapunov import get_U, delt_e
 
 # 时钟同步参数
 tao = 0.1  # 采样周期

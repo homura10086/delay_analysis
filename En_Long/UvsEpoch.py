@@ -5,7 +5,7 @@ import random
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy.stats import bernoulli
-from Lyapunov import get_U, delt_e
+from En_Long.Lyapunov import get_U, delt_e
 
 random.seed(1)
 # 时钟同步参数

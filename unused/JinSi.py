@@ -1,3 +1,6 @@
+"""
+师兄论文
+"""
 import matplotlib.pyplot as plt
 from scipy.stats import chi2
 from math import *
