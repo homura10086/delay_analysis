@@ -32,7 +32,7 @@ times = 100  # 蒙特卡洛单点样本数
 loops = 20  # 蒙特卡洛单点实验次数
 
 
-def get_dcp_snc(Pt: float, t_low=t_low, lamda_a=lamda_a) -> (float, float):
+def get_dcp_snc(Pt: float, t_low=t_low, lamda_a=lamda_a, Bw=Bw) -> (float, float):
     # print("P", Pt)
     Pt = pow(10, Pt / 10)  # mW
     snr = Pt * h  # 比值
@@ -45,7 +45,10 @@ def get_dcp_snc(Pt: float, t_low=t_low, lamda_a=lamda_a) -> (float, float):
     # index = 1e-1
 
     # for lamuda
-    index = 1e-2
+    # index = 1e-2
+
+    # for bandWidth
+    index = 1e-4
 
     # for slot
     # index = 1e-1
@@ -56,7 +59,10 @@ def get_dcp_snc(Pt: float, t_low=t_low, lamda_a=lamda_a) -> (float, float):
             lambda z: exp(- theta * Bw * log2(1 + snr * z) * index) * stats.expon.pdf(z, loc=0, scale=2 * sigma ** 2)
         E_S = integrate.quad(exp_s, 0, inf)[0]
         # for lamda
-        theta += 3e-5
+        # theta += 3e-5
+
+        # for bandWidth
+        theta += 1e-5
 
         # for v2/v1
         # theta += 1e-5

@@ -31,7 +31,56 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\Zh_Long\data_UkAndPkVsSlot.csv">
+        <entry key="\Zh_Long\data_UkAndPkVsArrival_queue_ga.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Zh_Long\data_UkAndPkVsArrival_queue_lag.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Zh_Long\data_UkAndPkVsArrival_snc_ga.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Zh_Long\data_UkAndPkVsArrival_snc_lag.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Zh_Long\data_UkAndPkVsBw_queue_ga.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Zh_Long\data_UkAndPkVsBw_queue_lag.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Zh_Long\data_UkAndPkVsBw_snc_ga.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Zh_Long\data_UkAndPkVsBw_snc_lag.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -39,6 +88,34 @@
           </value>
         </entry>
         <entry key="\Zh_Long\data_UkAndPkVsSlot_snc.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Zh_Long\data_UkAndPkVsV_queue_ga.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Zh_Long\data_UkAndPkVsV_queue_lag.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Zh_Long\data_UkAndPkVsV_snc_ga.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Zh_Long\data_UkAndPkVsV_snc_lag.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

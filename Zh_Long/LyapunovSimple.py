@@ -39,7 +39,7 @@ P0 = e_avg.transpose().dot(e_avg).item()
 loops = 100  # 卡尔曼滤波器迭代次数
 
 
-def get_U(B: float, snr: float) -> float:
+def get_U(B: float, snr: float, W=W) -> float:
     Bw_e = (Ts / (Ts + B)) * W  # 考虑保时带的有效带宽
     U = Bw_e * log2(1 + snr)
     return U
@@ -88,12 +88,12 @@ def get_step(Ps: list, a_s: list, lamuda: float, snr: float, loops: int, B=0.0, 
     return Pk, U, target, a_avg
 
 
-def get_stepForParam(lamuda: float, snr: float, loops: int, B=0.0, v1=v1, v2=v2) -> (
+def get_stepForParam(lamuda: float, snr: float, loops: int, B=0.0, v1=v1, v2=v2, W=W) -> (
         float, float, float, float):
     # 执行loops步卡尔曼滤波
     Pk, a_avg = get_karman(lamuda, loops)
     if B == 0.0:
         B = delt_e + Pk     # 保时带长度 s
-    U = get_U(B, snr)
+    U = get_U(B, snr, W)
     target = v1 * Pk * a_avg - v2 * U
     return Pk, U, target, a_avg

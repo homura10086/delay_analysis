@@ -10,7 +10,7 @@ from scipy import stats
 from delay_analysis_QueueAndSNCForLag import t_low, h, sigma, L, Bw, lamda_a, t_up
 
 
-def get_dcp_queue(Pt: float, t_low=t_low, lamda_a=lamda_a) -> (float, float):
+def get_dcp_queue(Pt: float, t_low=t_low, lamda_a=lamda_a, Bw=Bw) -> (float, float):
     Pt = pow(10, Pt / 10)  # mW
     snr = Pt * h  # 比值
 
