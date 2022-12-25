@@ -94,34 +94,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\Zh_Long\data_UkAndPkVsV_queue_ga.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\Zh_Long\data_UkAndPkVsV_queue_lag.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\Zh_Long\data_UkAndPkVsV_snc_ga.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\Zh_Long\data_UkAndPkVsV_snc_lag.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
       </map>
     </option>
   </component>

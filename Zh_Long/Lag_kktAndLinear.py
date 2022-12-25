@@ -3,10 +3,12 @@
 """
 import copy
 from typing import Callable
+
 import numpy as np
 from scipy.optimize import minimize
 from tqdm import tqdm
-from LyapunovSimple import get_step, get_stepForParam, get_karman, get_karmanForSlot, delt_e, P0, loops, get_U, v1, v2, Ps
+
+from LyapunovSimple import get_step, get_stepForParam, get_karman, get_karmanForSlot, delt_e, P0, loops, get_U, v1, v2
 from Zh_Long.Geat import geat
 from delay_analysis_QueueAndSNCForLag import get_dcp_snc, lamda_a, h, Bw
 from delay_analysis_QueueForLag import get_dcp_queue
@@ -95,6 +97,7 @@ def getSolution(N: int, V1=v1, V2=v2, lamda_a=lamda_a, loops=loops, modelName='s
 
             pk_pre = pk
             pk = getSolutionPower(Bk, V1, V2, lamda_a, loops, modelName, Ps_cp, a_s_cp)
+            print(pk)
             snr = pow(10, pk / 10) * h  # 比值
             Uk = get_U(Bk, snr)
 
@@ -145,20 +148,20 @@ def getSolutionPowerForParam(V1: float, V2: float, lamda_a: float, BW: float, lo
 
 def getSolutionForParma(V1=v1, V2=v2, lamda_a=lamda_a, Bw=Bw, loops=loops, modelName='snc', algorithmName='lag') -> (
         float, float):
-
     # Ps = [P0]
     if algorithmName == 'lag':
         pk = getSolutionPowerForParam(V1, V2, lamda_a, Bw, loops, modelName)
     else:
         pk = geat(loops, lamda_a, v1, v2, modelName, p_min, p_max, Bw)
-    # print(pk)
     # if modelName == 'snc':
     dcp, snr = get_dcp_snc(pk, lamda_a=lamda_a, Bw=Bw)
     # else:
-    #     dcp, snr = get_dcp_queue(pk, lamda_a=lamda_a)
+    #     dcp, snr = get_dcp_queue(pk,
+    #                              lamda_a=lamda_a,
+    #                              Bw=Bw,
+    #                              )
     Pk = get_karman(dcp, loops=100)[0]
     Bk = Pk + delt_e
     Uk = get_U(Bk, snr, W=Bw)
-
     return Uk, Pk
 

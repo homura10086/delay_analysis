@@ -2,12 +2,20 @@
 时钟同步精度误差协方差和平均吞吐量的联合优化问题建模
 PK为矩阵，吞吐量计算考虑λ
 """
+#   将根目录加入sys.path中,解决命令行找不到包的问题
+import sys
+import os
+curPath = os.path.abspath(os.path.dirname(__file__))
+# print(curPath)
+rootPath = os.path.split(curPath)[0]
+# print(rootPath)
+sys.path.append(rootPath)
 
 from math import sqrt, log2
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import bernoulli, norm
-from delay_analysis_QueueAndSNCForLag import L, Bw, get_dcp_snc
+from Zh_Long.delay_analysis_QueueAndSNCForLag import L, Bw, get_dcp_snc
 
 # 时延区间估计参数
 W = Bw  # 系统带宽 Hz
@@ -27,7 +35,7 @@ V = 1   # 信道色散
 
 Ts = 1e-3   # 时隙长度 s (scs = 30kHz)
 delt_e = 10e-6  # 固定误差 s
-v1 = 1e4  # 控制比例系数
+v1 = 1e6  # 控制比例系数
 v2 = 1e-6   # 控制比例系数
 bk = 0.01  # Pk虚拟队列的离去过程
 
@@ -48,35 +56,33 @@ def get_U(lamuda, B, c):
     return U
 
 
-def get_karman(lamuda):
-    a_s.clear()
+def get_karman(lamuda, Ps, a_s, loops=loops):
+    Ps.append(P0)
+
     for k in range(loops):
         inv = np.matrix(C.dot(Ps[k]).dot(C.transpose()) + R).I.item()
         # gamma = bernoulli.rvs(p=lamuda, size=1)
         P = A.dot(Ps[k]).dot(A.transpose()) + Q - \
             lamuda * inv * A.dot(Ps[k]).dot(C.transpose()).dot(C).dot(Ps[k]).dot(A.transpose())
-        # print(P.trace())
         Ps.append(P)
         a = (P - Ps[k]).trace() + bk if Ps[k].trace() >= bk else P.trace()  # 虚拟队列到达过程
-        # print(a)
         a_s.append(a)
+
     a_avg = np.mean(a_s)
     Pk = Ps[len(Ps) - 1]
-    # print(Pk.trace(), a_avg)
     Ps.clear()
+    # Ps.append(Pk)
+    a_s.clear()
     return Pk, a_avg
 
 
-def get_step(lamuda, c, B=0):
+def get_step(lamuda, c, Ps, a_s, loops=loops, v1=v1, v2=v2):
     # 执行k步卡尔曼滤波
-    Ps.append(P0)
-    Pk, a_avg = get_karman(lamuda)
-    if B == 0:
-        B = delt_e + Pk.trace()     # 保时带长度 s
-    # print(B)
+    Pk, a_avg = get_karman(lamuda, Ps, a_s, loops)
+    B = delt_e + Pk.trace()     # 保时带长度 s
     U = get_U(lamuda, B, c)
     target = v1 * Pk.trace() * a_avg - v2 * U
-    return Pk, U, target
+    return Pk.trace(), U, target, B
 
 
 if __name__ == '__main__':

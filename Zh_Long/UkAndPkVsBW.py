@@ -41,14 +41,15 @@ def plotData():
 
     fig = plt.figure(1)
     ax1 = fig.add_subplot()
-    lns1 = ax1.plot(Bws, Pks_snc_lag, label='随机网络演算+排队论（Lag-KKT求解）', marker='.', linestyle='--')
-    lns2 = ax1.plot(Bws, Pks_queue_lag, label='排队论（Lag-KKT求解）', marker='*', linestyle='--')
-    lns3 = ax1.plot(Bws, Pks_snc_ga, label='随机网络演算+排队论（遗传算法求解）', marker='^', linestyle='--')
-    lns4 = ax1.plot(Bws, Pks_queue_ga, label='排队论（遗传算法求解）', marker='>', linestyle='--')
+    lns1 = ax1.plot(Bws, Pks_snc_lag, label='确定性不完全模型（拉格朗日-KKT求解）', marker='.', linestyle='--')
+    lns2 = ax1.plot(Bws, Pks_queue_lag, label='不完全模型（拉格朗日-KKT求解）', marker='*', linestyle='--')
+    lns3 = ax1.plot(Bws, Pks_snc_ga, label='确定性不完全模型（遗传算法求解）', marker='^', linestyle='--')
+    lns4 = ax1.plot(Bws, Pks_queue_ga, label='不完全模型（遗传算法求解）', marker='>', linestyle='--')
     ax1.set_ylabel('P')
     ax1.set_xlabel('系统带宽(Hz)')
     ax1.set_xscale('log')  # 对数坐标轴
     ax1.invert_yaxis()  # y轴反向
+    ax1.set_xticks(np.logspace(6, 7, 5))
     ax1.grid()
 
     lns_p = lns1 + lns2 + lns3 + lns4
@@ -59,14 +60,15 @@ def plotData():
 
     fig = plt.figure(2)
     ax2 = fig.add_subplot()
-    lns5 = ax2.plot(Bws, Uks_snc_lag, label='随机网络演算+排队论（Lag-KKT求解）', marker='.', linestyle='--')
-    lns6 = ax2.plot(Bws, Uks_queue_lag, label='排队论（Lag-KKT求解）', marker='*', linestyle='--')
-    lns7 = ax2.plot(Bws, Uks_snc_ga, label='随机网络演算+排队论（遗传算法求解）', marker='^', linestyle='--')
-    lns8 = ax2.plot(Bws, Uks_queue_ga, label='排队论（遗传算法求解）', marker='>', linestyle='--')
+    lns5 = ax2.plot(Bws, Uks_snc_lag, label='确定性不完全模型（拉格朗日-KKT求解）', marker='.', linestyle='--')
+    lns6 = ax2.plot(Bws, Uks_queue_lag, label='不完全模型（拉格朗日-KKT求解）', marker='*', linestyle='--')
+    lns7 = ax2.plot(Bws, Uks_snc_ga, label='确定性不完全模型（遗传算法求解）', marker='^', linestyle='--')
+    lns8 = ax2.plot(Bws, Uks_queue_ga, label='不完全模型（遗传算法求解）', marker='>', linestyle='--')
 
     ax2.set_ylabel('U/bps')
     ax2.set_xlabel('系统带宽(Hz)')
     ax2.set_xscale('log')  # 对数坐标轴
+    ax2.set_xticks(np.logspace(6, 7, 6))
     ax2.grid()
 
     lns = lns5 + lns6 + lns7 + lns8

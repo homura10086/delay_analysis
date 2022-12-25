@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import geatpy as ea
+import numpy as np
 
-from Zh_Long.LyapunovSimple import get_stepForParam, v1, v2
+from Zh_Long.LyapunovSimple import get_stepForParam, v1, v2, Ts, P0, delt_e, get_karman
 from Zh_Long.delay_analysis_QueueAndSNCForLag import get_dcp_snc, h, lamda_a
 from Zh_Long.delay_analysis_QueueForLag import get_dcp_queue
 
@@ -48,13 +49,23 @@ class MyProblem(ea.Problem):  # 继承Problem父类
     # @ea.Problem.single
     def evalVars(self, Vars):  # 定义目标函数（含约束）
         if self.modelName == 'snc':
-            f = get_stepForParam(get_dcp_snc(Vars, lamda_a=self.lamda_a, Bw=self.Bw)[0],
-                                 pow(10, Vars / 10) * h, self.loops, v1=self.v1, v2=self.v2, W=self.Bw)[2]  # 计算目标函数值
+            lamda, snr = get_dcp_snc(Pt=Vars,
+                                     lamda_a=self.lamda_a,
+                                     Bw=self.Bw,
+                                     )
         else:
-            f = get_stepForParam(get_dcp_queue(Vars, lamda_a=self.lamda_a, Bw=self.Bw)[0],
-                                 pow(10, Vars / 10) * h, self.loops, v1=self.v1, v2=self.v2, W=self.Bw)[2]
+            lamda, snr = get_dcp_queue(Pt=Vars,
+                                       lamda_a=self.lamda_a,
+                                       Bw=self.Bw,
+                                       )
+        f = get_stepForParam(lamuda=lamda,
+                             snr=snr,
+                             loops=self.loops,
+                             v1=self.v1,
+                             v2=self.v2,
+                             W=self.Bw,
+                             )[2]  # 计算目标函数值
         # CV = np.array()  # 计算违反约束程度
-        # print(f.reshape(1, 1))
         return f.reshape(1, 1)
 
 
@@ -64,9 +75,9 @@ def geat(loops: int, lamda_a: float, v1: float, v2: float, modelName: str, pMim:
     problem = MyProblem(loops, pMim, pMax, Bw, lamda_a, v1, v2, modelName)  # 生成问题对象
     # 构建算法
     algorithm = ea.soea_SEGA_templet(problem,
-                                     ea.Population(Encoding='RI', NIND=1),     # 种群规模
+                                     ea.Population(Encoding='RI', NIND=1),  # 种群规模
                                      MAXGEN=1,  # 最大进化代数
-                                     logTras=1,     # 表示每隔多少代记录一次日志信息，0表示不记录
+                                     logTras=1,  # 表示每隔多少代记录一次日志信息，0表示不记录
                                      trappedValue=1e-1)
     # 求解
     res = ea.optimize(

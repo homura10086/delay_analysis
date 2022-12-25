@@ -1,0 +1,1 @@
+{'success': True, 'stopMsg': 'The algotirhm stepped because it exceeded the generation limit.', 'Vars': array([[2.03710938e+01, 5.02203369e-04]]), 'ObjV': array([[-1.67321468]]), 'CV': None, 'executeTime': 0.029103994369506836, 'nfev': 1, 'startTime': '2022-11-22 20h-23m-40s', 'endTime': '2022-11-22 20h-23m-40s'}

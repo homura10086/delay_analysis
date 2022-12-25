@@ -53,21 +53,21 @@ def get_U(lamuda, B):
 
 
 def get_karman(lamuda):
-    a_s.clear()
+    Ps.append(P0)
+
     for k in range(loops):
         inv = np.matrix(C.dot(Ps[k]).dot(C.transpose()) + R).I.item()
         # gamma = bernoulli.rvs(p=lamuda, size=1)
         P = A.dot(Ps[k]).dot(A.transpose()) + Q - \
             lamuda * inv * A.dot(Ps[k]).dot(C.transpose()).dot(C).dot(Ps[k]).dot(A.transpose())
-        # print(P.trace())
         Ps.append(P)
         a = (P - Ps[k]).trace() + bk if Ps[k].trace() >= bk else P.trace()  # 虚拟队列到达过程
-        # print(a)
         a_s.append(a)
+
     a_avg = np.mean(a_s)
     Pk = Ps[len(Ps) - 1]
-    # print(Pk.trace(), a_avg)
     Ps.clear()
+    a_s.clear()
     return Pk, a_avg
 
 
@@ -99,7 +99,6 @@ def get_step(lamuda):
     # y = C * xs[k] + v
     # z = gamma * y
     # V = 1 - 1 / (1 + C)**2   # 信道色散
-    Ps.append(P0)
     # print(P0.trace())
     Pk, a_avg = get_karman(lamuda)
     B = delt_e + Pk.trace()  # 保时带长度 s

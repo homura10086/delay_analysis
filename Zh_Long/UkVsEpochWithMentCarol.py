@@ -72,19 +72,18 @@ plt.figure(1)
 plt.grid(True)
 plt.xlabel('观测步数')
 plt.ylabel('U/bps')
-marker_size = 3
-marker = '.'
-plt.plot(np.linspace(0, loops_karman, loops_karman), Us_snc, linestyle='--', marker=marker,
-         markersize=marker_size, label='排队论+随机网络演算')
-plt.scatter([range(0, loops_karman)] * loops_mc, Us_mc, color='red', marker=marker,
-            alpha=0.9, label='蒙特卡洛')
-plt.plot(np.linspace(0, loops_karman, loops_karman), Us_queue, linestyle='--', marker=marker,
-         markersize=marker_size, label='排队论')
-plt.plot(np.linspace(0, loops_karman, loops_karman), Us, linestyle='--', marker=marker,
-         markersize=marker_size, label='完全时钟同步')
+marker_size = 5
+plt.plot(np.linspace(0, loops_karman, loops_karman), Us_snc, linestyle='--', marker='+',
+         markersize=marker_size, label='确定性不完全时钟同步模型')
+plt.scatter([range(0, loops_karman)] * loops_mc, Us_mc, color='red', marker='.',
+            alpha=0.9, label='蒙特卡洛随机实验')
+plt.plot(np.linspace(0, loops_karman, loops_karman), Us_queue, linestyle='--', marker='.',
+         markersize=marker_size, label='不完全时钟同步模型')
+plt.plot(np.linspace(0, loops_karman, loops_karman), Us, linestyle='--', marker='^',
+         markersize=marker_size, label='完全时钟同步模型')
 plt.legend()
 plt.savefig('./UVsEpoch')
 plt.show()
 
-print(dcp_queue)
-print(dcp_snc)
+# print(dcp_queue)
+# print(dcp_snc)

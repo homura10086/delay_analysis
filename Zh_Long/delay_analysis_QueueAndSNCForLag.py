@@ -32,10 +32,10 @@ times = 100  # 蒙特卡洛单点样本数
 loops = 20  # 蒙特卡洛单点实验次数
 
 
-def get_dcp_snc(Pt: float, t_low=t_low, lamda_a=lamda_a, Bw=Bw) -> (float, float):
+def get_dcp_snc(Pt: float, t_low=t_low, lamda_a=lamda_a, Bw=Bw, miu=1) -> (float, float):
     # print("P", Pt)
     Pt = pow(10, Pt / 10)  # mW
-    snr = Pt * h  # 比值
+    snr = Pt * h * miu  # 比值,miu是受衰落随机变量影响的信道增益
 
     # 随机网络演算上边界计算
     theta = 0.0  # 随机网络演算参数
@@ -45,10 +45,10 @@ def get_dcp_snc(Pt: float, t_low=t_low, lamda_a=lamda_a, Bw=Bw) -> (float, float
     # index = 1e-1
 
     # for lamuda
-    # index = 1e-2
+    index = 1e-2
 
     # for bandWidth
-    index = 1e-4
+    # index = 1e-4
 
     # for slot
     # index = 1e-1

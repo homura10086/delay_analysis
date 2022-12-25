@@ -54,7 +54,12 @@ if __name__ == '__main__':
     loops = 10  # 优化算法迭代的时隙间隔
     N = 30  # 算法迭代次数
     col = ('Pk', 'Uk')
-    getSolution(N=N, loops=loops, modelName=modelName)
+
+    getSolution(N=N,
+                loops=loops,
+                modelName=modelName,
+                )
+
     saveData(modelName)
 
     plotData()

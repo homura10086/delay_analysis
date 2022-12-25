@@ -2,6 +2,14 @@
 时钟同步精度误差协方差和平均吞吐量的联合优化问题建模
 PK为标量，吞吐量计算不考虑λ
 """
+#   将根目录加入sys.path中,解决命令行找不到包的问题
+import sys
+import os
+curPath = os.path.abspath(os.path.dirname(__file__))
+# print(curPath)
+rootPath = os.path.split(curPath)[0]
+# print(rootPath)
+sys.path.append(rootPath)
 
 from math import sqrt, log2
 from typing import List
@@ -9,7 +17,7 @@ from typing import List
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import bernoulli, norm
-from delay_analysis_QueueAndSNCForLag import L, Bw, get_dcp_snc, t_up, t_low, sigma
+from Zh_Long.delay_analysis_QueueAndSNCForLag import L, Bw, get_dcp_snc, t_up, t_low, sigma
 
 # 时延区间估计参数
 W = Bw  # 系统带宽 Hz
@@ -88,8 +96,7 @@ def get_step(Ps: list, a_s: list, lamuda: float, snr: float, loops: int, B=0.0, 
     return Pk, U, target, a_avg
 
 
-def get_stepForParam(lamuda: float, snr: float, loops: int, B=0.0, v1=v1, v2=v2, W=W) -> (
-        float, float, float, float):
+def get_stepForParam(lamuda: float, snr: float, loops: int, B=0.0, v1=v1, v2=v2, W=W) -> (float, float, float, float):
     # 执行loops步卡尔曼滤波
     Pk, a_avg = get_karman(lamuda, loops)
     if B == 0.0:
